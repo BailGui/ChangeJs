@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Tu peux changer la couleur de l'arrière plan</p>
+
+    <label for="backgroundColorPicker">Color:</label>
+    <input type="color" value="#ff0000" id="backgroundColorPicker" />
+
+    <script>
+      let body = document.querySelector("body");
+      let backgroundColorPicker = document.querySelector(
+        "#backgroundColorPicker"
+      );
+
+      function changeBackground() {
+        let newBackgroundColor = backgroundColorPicker.value;
+        body.style.backgroundColor = newBackgroundColor;
+      }
+
+      backgroundColorPicker.addEventListener("change", changeBackground);
+    </script>
+
+    <p>Tu peux changer les textes de couleur.</p>
+
+    <label for="color-picker">Color:</label>
+    <input type="color" value="#ff0000" id="color-picker" />
+
+    <script>
+      let colorPicker;
+      const defaultColor = "#0000ff";
+
+      function startup() {
+        colorPicker = document.querySelector("#color-picker");
+        colorPicker.value = defaultColor;
+        colorPicker.addEventListener("input", updateFirst, false);
+        colorPicker.addEventListener("change", updateAll, false);
+      }
+
+      window.addEventListener("load", startup, false);
+
+      function updateFirst(event) {
+        const p = document.querySelector("p");
+        if (p) {
+          p.style.color = event.target.value;
+        }
+      }
+
+      function updateAll(event) {
+        document.querySelectorAll("p").forEach((p) => {
+          p.style.color = event.target.value;
+        });
+      }
+    </script>
+  </body>
+</html>
